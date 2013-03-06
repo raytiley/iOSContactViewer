@@ -46,7 +46,7 @@
 
 - (void)insertNewObject:(id)sender
 {
-    //This is where will pop a new View / Controller on to the stack.
+    
 }
 
 #pragma mark - Table View
@@ -70,7 +70,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
 
     Contact *contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
@@ -114,12 +114,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.detailViewController) {
-        self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
-    }
-    Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
-    self.detailViewController.detailItem = contact;
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    UIActionSheet* actionSheet =[[UIActionSheet alloc]
+                                 initWithTitle:@"Action"
+                                 delegate:self
+                                 cancelButtonTitle:@"Cancel"
+                                 destructiveButtonTitle:nil
+                                 otherButtonTitles:@"Call", @"Text", @"Email", nil];
+    
+    [actionSheet showInView:self.view];
+    
+
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    
+     if (!self.detailViewController) {
+     self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+     }
+     Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
+     self.detailViewController.detailItem = contact;
+     [self.navigationController pushViewController:self.detailViewController animated:YES];
+     
 }
 
 @end

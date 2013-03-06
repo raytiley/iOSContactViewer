@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "ContactEditViewController.h"
 
 @interface DetailViewController ()
 - (void)configureView;
@@ -40,6 +41,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = editButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +59,15 @@
         self.title = NSLocalizedString(@"Detail", @"Detail");
     }
     return self;
+}
+
+-(void) editButtonPressed:(id)sender
+{
+
+    ContactEditViewController* edit = [[ContactEditViewController alloc] initWithNibName:@"ContactEditViewController" bundle:nil];
+
+    [edit setContact:self.detailItem];
+    [self.navigationController pushViewController:edit animated:YES];
 }
 							
 @end
