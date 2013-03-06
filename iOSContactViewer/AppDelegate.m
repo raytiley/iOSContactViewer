@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 
 #import "MasterViewController.h"
+#import "Contact.h"
+#import "ContactRepository.h"
 
 @implementation AppDelegate
 
@@ -16,7 +18,26 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-
+    
+    //Create a few contacts until we get persistance working
+    ContactRepository* repo = [ContactRepository getContactRepository];
+    Contact* ray = [repo createNewContact];
+    Contact* tyler = [repo createNewContact];
+    Contact* steveA = [repo createNewContact];
+    Contact* steveM = [repo createNewContact];
+    
+    [ray setName:@"Ray Tiley"];
+    [ray setTitle:@"Tightrope Media Systems"];
+    
+    [tyler setName:@"Tyler Smith"];
+    [tyler setTitle:@"General Dynamics"];
+    
+    [steveA setName:@"Steve Atterbury"];
+    [steveA setTitle:@"Lockheed"];
+    
+    [steveM setName:@"Steve McAdams"];
+    [steveM setTitle:@"Lockheed"];
+    
     MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
     self.window.rootViewController = self.navigationController;

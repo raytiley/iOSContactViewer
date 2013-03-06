@@ -9,9 +9,11 @@
 #import "MasterViewController.h"
 
 #import "DetailViewController.h"
+#import "ContactRepository.h"
+#import "Contact.h"
 
 @interface MasterViewController () {
-    NSMutableArray *_objects;
+    
 }
 @end
 
@@ -21,7 +23,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Master", @"Master");
+        self.title = NSLocalizedString(@"Contacts", @"Contacts");
     }
     return self;
 }
@@ -44,12 +46,7 @@
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    //This is where will pop a new View / Controller on to the stack.
 }
 
 #pragma mark - Table View
@@ -61,7 +58,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    ContactRepository* repo = [ContactRepository getContactRepository];
+    return [[repo allContacts] count];
 }
 
 // Customize the appearance of table view cells.
@@ -75,9 +73,8 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    Contact *contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
+    cell.textLabel.text = [contact name];
     return cell;
 }
 
@@ -89,8 +86,10 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ContactRepository* contacts = [ContactRepository getContactRepository];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+        Contact* contactToRemove = [[contacts allContacts] objectAtIndex:indexPath.row];
+        [contacts deleteContact:contactToRemove];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -118,8 +117,8 @@
     if (!self.detailViewController) {
         self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     }
-    NSDate *object = _objects[indexPath.row];
-    self.detailViewController.detailItem = object;
+    Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
+    self.detailViewController.detailItem = contact;
     [self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
