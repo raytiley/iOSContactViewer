@@ -18,6 +18,7 @@
 -(NSArray *)allContacts;
 -(Contact *)createNewContact;
 -(void)deleteContact:(Contact*)contact;
+-(BOOL) saveChanges;
 
 
 @end

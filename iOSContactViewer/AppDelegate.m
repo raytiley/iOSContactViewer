@@ -21,22 +21,26 @@
     
     //Create a few contacts until we get persistance working
     ContactRepository* repo = [ContactRepository getContactRepository];
-    Contact* ray = [repo createNewContact];
-    Contact* tyler = [repo createNewContact];
-    Contact* steveA = [repo createNewContact];
-    Contact* steveM = [repo createNewContact];
+    if([[repo allContacts] count] == 0)
+    {
+        Contact* ray = [repo createNewContact];
+        Contact* tyler = [repo createNewContact];
+        Contact* steveA = [repo createNewContact];
+        Contact* steveM = [repo createNewContact];
+        
+        [ray setName:@"Ray Tiley"];
+        [ray setTitle:@"Tightrope Media Systems"];
+        
+        [tyler setName:@"Tyler Smith"];
+        [tyler setTitle:@"General Dynamics"];
+        
+        [steveA setName:@"Steve Atterbury"];
+        [steveA setTitle:@"Lockheed"];
+        
+        [steveM setName:@"Steve McAdams"];
+        [steveM setTitle:@"Lockheed"];
+    }
     
-    [ray setName:@"Ray Tiley"];
-    [ray setTitle:@"Tightrope Media Systems"];
-    
-    [tyler setName:@"Tyler Smith"];
-    [tyler setTitle:@"General Dynamics"];
-    
-    [steveA setName:@"Steve Atterbury"];
-    [steveA setTitle:@"Lockheed"];
-    
-    [steveM setName:@"Steve McAdams"];
-    [steveM setTitle:@"Lockheed"];
     
     MasterViewController *masterViewController = [[MasterViewController alloc] initWithNibName:@"MasterViewController" bundle:nil];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
@@ -53,6 +57,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    ContactRepository* repo = [ContactRepository getContactRepository];
+    [repo saveChanges];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }

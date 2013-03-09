@@ -15,7 +15,13 @@
     self = [super init];
     if(self)
     {
-        contacts = [[NSMutableArray alloc] init];
+        NSString *path = [self itemsArchivePath];
+        contacts = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        if(!contacts)
+        {
+            contacts = [[NSMutableArray alloc] init];
+        }
+        
     }
     
     return self;
@@ -57,4 +63,17 @@
 {
     return [self getContactRepository];
 }
-@end
+
+-(BOOL)saveChanges
+{
+    NSString *path = [self itemsArchivePath];
+    return [NSKeyedArchiver archiveRootObject:contacts toFile:path];
+}
+
+
+-(NSString *)itemsArchivePath
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    return [documentDirectory stringByAppendingPathComponent:@"contacts.archive"];
+}@end
