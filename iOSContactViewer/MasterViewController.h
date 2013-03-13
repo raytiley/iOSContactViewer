@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class DetailViewController;
+@class ContactViewController;
 
 @interface MasterViewController : UITableViewController <UIActionSheetDelegate>
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) ContactViewController *contactViewController;
 
 @end

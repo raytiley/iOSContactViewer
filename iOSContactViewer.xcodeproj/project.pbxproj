@@ -17,13 +17,12 @@
 		AF6316A216E6C16D0004116F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF6316A116E6C16D0004116F /* Default@2x.png */; };
 		AF6316A416E6C16D0004116F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AF6316A316E6C16D0004116F /* Default-568h@2x.png */; };
 		AF6316A716E6C16D0004116F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6316A616E6C16D0004116F /* MasterViewController.m */; };
-		AF6316AA16E6C16D0004116F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6316A916E6C16D0004116F /* DetailViewController.m */; };
 		AF6316AD16E6C16D0004116F /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF6316AB16E6C16D0004116F /* MasterViewController.xib */; };
-		AF6316B016E6C16D0004116F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF6316AE16E6C16D0004116F /* DetailViewController.xib */; };
 		AF6316B816E6C3850004116F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6316B716E6C3850004116F /* Contact.m */; };
 		AF6316BC16E6C56F0004116F /* ContactRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6316BB16E6C56F0004116F /* ContactRepository.m */; };
 		AF6316C016E6F5660004116F /* ContactEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6316BE16E6F5660004116F /* ContactEditViewController.m */; };
 		AF6316C116E6F5660004116F /* ContactEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF6316BF16E6F5660004116F /* ContactEditViewController.xib */; };
+		AFE987A316F00A2C00F86CEC /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE987A216F00A2C00F86CEC /* ContactViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,10 +41,7 @@
 		AF6316A316E6C16D0004116F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AF6316A516E6C16D0004116F /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		AF6316A616E6C16D0004116F /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		AF6316A816E6C16D0004116F /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		AF6316A916E6C16D0004116F /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		AF6316AC16E6C16D0004116F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MasterViewController.xib; sourceTree = "<group>"; };
-		AF6316AF16E6C16D0004116F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailViewController.xib; sourceTree = "<group>"; };
 		AF6316B616E6C3850004116F /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		AF6316B716E6C3850004116F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		AF6316BA16E6C56F0004116F /* ContactRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactRepository.h; sourceTree = "<group>"; };
@@ -53,6 +49,8 @@
 		AF6316BD16E6F5660004116F /* ContactEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactEditViewController.h; sourceTree = "<group>"; };
 		AF6316BE16E6F5660004116F /* ContactEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactEditViewController.m; sourceTree = "<group>"; };
 		AF6316BF16E6F5660004116F /* ContactEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactEditViewController.xib; sourceTree = "<group>"; };
+		AFE987A116F00A2C00F86CEC /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		AFE987A216F00A2C00F86CEC /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +101,7 @@
 				AF63169D16E6C16D0004116F /* AppDelegate.m */,
 				AF6316A516E6C16D0004116F /* MasterViewController.h */,
 				AF6316A616E6C16D0004116F /* MasterViewController.m */,
-				AF6316A816E6C16D0004116F /* DetailViewController.h */,
-				AF6316A916E6C16D0004116F /* DetailViewController.m */,
 				AF6316AB16E6C16D0004116F /* MasterViewController.xib */,
-				AF6316AE16E6C16D0004116F /* DetailViewController.xib */,
 				AF63169416E6C16D0004116F /* Supporting Files */,
 				AF6316B616E6C3850004116F /* Contact.h */,
 				AF6316B716E6C3850004116F /* Contact.m */,
@@ -115,6 +110,8 @@
 				AF6316BD16E6F5660004116F /* ContactEditViewController.h */,
 				AF6316BE16E6F5660004116F /* ContactEditViewController.m */,
 				AF6316BF16E6F5660004116F /* ContactEditViewController.xib */,
+				AFE987A116F00A2C00F86CEC /* ContactViewController.h */,
+				AFE987A216F00A2C00F86CEC /* ContactViewController.m */,
 			);
 			path = iOSContactViewer;
 			sourceTree = "<group>";
@@ -189,7 +186,6 @@
 				AF6316A216E6C16D0004116F /* Default@2x.png in Resources */,
 				AF6316A416E6C16D0004116F /* Default-568h@2x.png in Resources */,
 				AF6316AD16E6C16D0004116F /* MasterViewController.xib in Resources */,
-				AF6316B016E6C16D0004116F /* DetailViewController.xib in Resources */,
 				AF6316C116E6F5660004116F /* ContactEditViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,10 +200,10 @@
 				AF63169A16E6C16D0004116F /* main.m in Sources */,
 				AF63169E16E6C16D0004116F /* AppDelegate.m in Sources */,
 				AF6316A716E6C16D0004116F /* MasterViewController.m in Sources */,
-				AF6316AA16E6C16D0004116F /* DetailViewController.m in Sources */,
 				AF6316B816E6C3850004116F /* Contact.m in Sources */,
 				AF6316BC16E6C56F0004116F /* ContactRepository.m in Sources */,
 				AF6316C016E6F5660004116F /* ContactEditViewController.m in Sources */,
+				AFE987A316F00A2C00F86CEC /* ContactViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,14 +224,6 @@
 				AF6316AC16E6C16D0004116F /* en */,
 			);
 			name = MasterViewController.xib;
-			sourceTree = "<group>";
-		};
-		AF6316AE16E6C16D0004116F /* DetailViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AF6316AF16E6C16D0004116F /* en */,
-			);
-			name = DetailViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -338,6 +326,7 @@
 				AF6316B516E6C16D0004116F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

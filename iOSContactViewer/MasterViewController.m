@@ -8,9 +8,9 @@
 
 #import "MasterViewController.h"
 
-#import "DetailViewController.h"
 #import "ContactRepository.h"
 #import "Contact.h"
+#import "ContactViewController.h"
 
 @interface MasterViewController () {
     
@@ -128,13 +128,12 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    
-     if (!self.detailViewController) {
-     self.detailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
+     if (!self.contactViewController) {
+         self.contactViewController = [[ContactViewController   alloc] init];
      }
      Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
-     self.detailViewController.detailItem = contact;
-     [self.navigationController pushViewController:self.detailViewController animated:YES];
+     self.contactViewController.contact = contact;
+     [self.navigationController pushViewController:self.contactViewController animated:YES];
      
 }
 

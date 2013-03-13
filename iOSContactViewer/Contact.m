@@ -17,6 +17,18 @@
 @synthesize defaultTextPhone;
 @synthesize defaultEmail;
 
+- (id)init
+{
+    self = [super init];
+    if(self)
+    {
+        self.phones = [[NSMutableArray alloc] init];
+        self.emails = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:name forKey:@"name"];

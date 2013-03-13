@@ -30,6 +30,10 @@
         
         [ray setName:@"Ray Tiley"];
         [ray setTitle:@"Tightrope Media Systems"];
+        [[ray phones] addObject:@"207-518-8612"];
+        [[ray phones] addObject:@"866-866-4118"];
+        [[ray emails] addObject:@"ray.tiley@trms.com"];
+        [[ray emails] addObject:@"raytiley@gmail.com"];
         
         [tyler setName:@"Tyler Smith"];
         [tyler setTitle:@"General Dynamics"];
