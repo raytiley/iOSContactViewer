@@ -18,7 +18,6 @@
 @end
 
 @implementation MasterViewController
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -134,10 +133,44 @@
     //Get the contact
     Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:actionSheet.tag];
     
-    //Do something with the contact!
     
     
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"Call"]) {
+        NSLog(@"Call button pressed");
+        if ([[device model] isEqualToString:@"iPhone"]) {
+            NSString *phoneNumber = [NSString stringWithFormat: @"tel://%@", contact.defaultCallPhone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+        }
+        else {
+            UIAlertView *NotPermitted=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your device doesn't support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [NotPermitted show];
+        }
+    }
+    if ([buttonTitle isEqualToString:@"Text"]) {
+        NSLog(@"Text button pressed");
+        if ([[device model] isEqualToString:@"iPhone"]) {
+            NSString *phoneNumber = [NSString stringWithFormat: @"sms://%@", contact.defaultTextPhone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+        }
+        else {
+            UIAlertView *NotPermitted=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your device doesn't support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [NotPermitted show];
+        }
+    }
+    if ([buttonTitle isEqualToString:@"Email"]) {
+        NSLog(@"Email button pressed");
+        NSString *emailAddress = [NSString stringWithFormat: @"mailto:%@", contact.defaultEmail];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailAddress]];
+        
+    }
+    if ([buttonTitle isEqualToString:@"Cancel"]) {
+        NSLog(@"Cancel button pressed");
+    }
+        
 }
+
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
