@@ -121,9 +121,22 @@
                                  destructiveButtonTitle:nil
                                  otherButtonTitles:@"Call", @"Text", @"Email", nil];
     
+    // Since we only have one section, the index path row is the index of our contact
+    // Set it as the tag on the action shee so we know what contact to act on.
+    [actionSheet setTag:indexPath.row];
     [actionSheet showInView:self.view];
     
 
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //Get the contact
+    Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:actionSheet.tag];
+    
+    //Do something with the contact!
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
