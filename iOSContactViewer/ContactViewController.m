@@ -104,10 +104,14 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     [cell.textLabel setText:@""];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
     NSString* section = [self sectionToContent:indexPath.section];
     
     if([section isEqualToString:@"Contact Details"])
     {
+        //Don't allow selecting
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         if(indexPath.row == 0)
             [cell.textLabel setText:contact.name];
         else
@@ -165,15 +169,71 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    NSString* section = [self sectionToContent:indexPath.section];
+    if([section isEqualToString:@"Phones"]) {
+        //We are going to open an action sheet so we can call or message them.
+        [self openActionSheetForPhoneAtIndex:indexPath.row];
+    }
+    
+    if([section isEqualToString:@"Emails"]) {
+        // Email the contact
+        NSLog(@"Email button pressed");
+        NSString *emailAddress = [NSString stringWithFormat: @"mailto:%@", [[contact emails] objectAtIndex:indexPath.row]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailAddress]];
+    }
+    
+    
 }
 
+- (void) openActionSheetForPhoneAtIndex: (NSInteger)index
+{
+    UIActionSheet* actionSheet =[[UIActionSheet alloc]
+                                 initWithTitle:@"Action"
+                                 delegate:self
+                                 cancelButtonTitle:@"Cancel"
+                                 destructiveButtonTitle:nil
+                                 otherButtonTitles:@"Call", @"Text", nil];
+    
+    // Since we only have one section, the index path row is the index of our contact
+    // Set it as the tag on the action shee so we know what contact to act on.
+    [actionSheet setTag:index];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //Get the contact
+    NSString* number = [[contact phones] objectAtIndex:actionSheet.tag];
+    
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"Call"]) {
+        NSLog(@"Call button pressed");
+        if ([[device model] isEqualToString:@"iPhone"]) {
+            NSString *phoneNumber = [NSString stringWithFormat: @"tel://%@", number];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+        }
+        else {
+            UIAlertView *NotPermitted=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your device doesn't support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [NotPermitted show];
+        }
+    }
+    if ([buttonTitle isEqualToString:@"Text"]) {
+        NSLog(@"Text button pressed");
+        if ([[device model] isEqualToString:@"iPhone"]) {
+            NSString *phoneNumber = [NSString stringWithFormat: @"sms://%@", number];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
+        }
+        else {
+            UIAlertView *NotPermitted=[[UIAlertView alloc] initWithTitle:@"Alert" message:@"Your device doesn't support this feature." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [NotPermitted show];
+        }
+    }
+    if ([buttonTitle isEqualToString:@"Cancel"]) {
+        NSLog(@"Cancel button pressed");
+    }
+    
+}
 - (NSString *)sectionToContent:(NSInteger)section
 {
         if(section == 0)

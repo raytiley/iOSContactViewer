@@ -124,16 +124,12 @@
     // Set it as the tag on the action shee so we know what contact to act on.
     [actionSheet setTag:indexPath.row];
     [actionSheet showInView:self.view];
-    
-
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     //Get the contact
     Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:actionSheet.tag];
-    
-    
     
     UIDevice *device = [UIDevice currentDevice];
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
