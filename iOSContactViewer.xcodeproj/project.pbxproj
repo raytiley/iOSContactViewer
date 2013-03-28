@@ -7,15 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF2EBA01170299C6004718F5 /* phone_focused_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EB9FB170299C6004718F5 /* phone_focused_transparent.png */; };
-		AF2EBA02170299C6004718F5 /* phone_selected_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EB9FC170299C6004718F5 /* phone_selected_transparent.png */; };
-		AF2EBA03170299C6004718F5 /* phone_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EB9FD170299C6004718F5 /* phone_transparent.png */; };
-		AF2EBA04170299C6004718F5 /* texting_focused_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EB9FE170299C6004718F5 /* texting_focused_transparent.png */; };
-		AF2EBA05170299C6004718F5 /* texting_selected_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EB9FF170299C6004718F5 /* texting_selected_transparent.png */; };
-		AF2EBA06170299C6004718F5 /* texting_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EBA00170299C6004718F5 /* texting_transparent.png */; };
-		AF2EBA0A170375DC004718F5 /* email_focused_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EBA07170375DC004718F5 /* email_focused_transparent.png */; };
-		AF2EBA0B170375DC004718F5 /* email_selected_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EBA08170375DC004718F5 /* email_selected_transparent.png */; };
-		AF2EBA0C170375DC004718F5 /* email_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2EBA09170375DC004718F5 /* email_transparent.png */; };
 		AF2EBA0F1703821A004718F5 /* MSSETableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2EBA0E1703821A004718F5 /* MSSETableViewCell.m */; };
 		AF63168E16E6C16D0004116F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF63168D16E6C16D0004116F /* UIKit.framework */; };
 		AF63169016E6C16D0004116F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF63168F16E6C16D0004116F /* Foundation.framework */; };
@@ -30,19 +21,20 @@
 		AF6316AD16E6C16D0004116F /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF6316AB16E6C16D0004116F /* MasterViewController.xib */; };
 		AF6316B816E6C3850004116F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6316B716E6C3850004116F /* Contact.m */; };
 		AF6316BC16E6C56F0004116F /* ContactRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6316BB16E6C56F0004116F /* ContactRepository.m */; };
+		AF65B7821703CCC900AB7213 /* email_focused_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B7781703CCC900AB7213 /* email_focused_transparent.png */; };
+		AF65B7831703CCC900AB7213 /* email_selected_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B7791703CCC900AB7213 /* email_selected_transparent.png */; };
+		AF65B7841703CCC900AB7213 /* email_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B77A1703CCC900AB7213 /* email_transparent.png */; };
+		AF65B7851703CCC900AB7213 /* ic_launcher.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B77B1703CCC900AB7213 /* ic_launcher.png */; };
+		AF65B7861703CCC900AB7213 /* phone_focused_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B77C1703CCC900AB7213 /* phone_focused_transparent.png */; };
+		AF65B7871703CCC900AB7213 /* phone_selected_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B77D1703CCC900AB7213 /* phone_selected_transparent.png */; };
+		AF65B7881703CCC900AB7213 /* phone_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B77E1703CCC900AB7213 /* phone_transparent.png */; };
+		AF65B7891703CCC900AB7213 /* texting_focused_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B77F1703CCC900AB7213 /* texting_focused_transparent.png */; };
+		AF65B78A1703CCC900AB7213 /* texting_selected_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B7801703CCC900AB7213 /* texting_selected_transparent.png */; };
+		AF65B78B1703CCC900AB7213 /* texting_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B7811703CCC900AB7213 /* texting_transparent.png */; };
 		AFE987A316F00A2C00F86CEC /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE987A216F00A2C00F86CEC /* ContactViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AF2EB9FB170299C6004718F5 /* phone_focused_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phone_focused_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/phone_focused_transparent.png"; sourceTree = "<group>"; };
-		AF2EB9FC170299C6004718F5 /* phone_selected_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phone_selected_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/phone_selected_transparent.png"; sourceTree = "<group>"; };
-		AF2EB9FD170299C6004718F5 /* phone_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phone_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/phone_transparent.png"; sourceTree = "<group>"; };
-		AF2EB9FE170299C6004718F5 /* texting_focused_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texting_focused_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/texting_focused_transparent.png"; sourceTree = "<group>"; };
-		AF2EB9FF170299C6004718F5 /* texting_selected_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texting_selected_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/texting_selected_transparent.png"; sourceTree = "<group>"; };
-		AF2EBA00170299C6004718F5 /* texting_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = texting_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/texting_transparent.png"; sourceTree = "<group>"; };
-		AF2EBA07170375DC004718F5 /* email_focused_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = email_focused_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/email_focused_transparent.png"; sourceTree = "<group>"; };
-		AF2EBA08170375DC004718F5 /* email_selected_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = email_selected_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/email_selected_transparent.png"; sourceTree = "<group>"; };
-		AF2EBA09170375DC004718F5 /* email_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = email_transparent.png; path = "../../AndroidContactViewer/res/drawable-xhdpi/email_transparent.png"; sourceTree = "<group>"; };
 		AF2EBA0D1703821A004718F5 /* MSSETableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSETableViewCell.h; sourceTree = "<group>"; };
 		AF2EBA0E1703821A004718F5 /* MSSETableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSETableViewCell.m; sourceTree = "<group>"; };
 		AF63168A16E6C16D0004116F /* iOSContactViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSContactViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +57,16 @@
 		AF6316B716E6C3850004116F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		AF6316BA16E6C56F0004116F /* ContactRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactRepository.h; sourceTree = "<group>"; };
 		AF6316BB16E6C56F0004116F /* ContactRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactRepository.m; sourceTree = "<group>"; };
+		AF65B7781703CCC900AB7213 /* email_focused_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_focused_transparent.png; sourceTree = "<group>"; };
+		AF65B7791703CCC900AB7213 /* email_selected_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_selected_transparent.png; sourceTree = "<group>"; };
+		AF65B77A1703CCC900AB7213 /* email_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_transparent.png; sourceTree = "<group>"; };
+		AF65B77B1703CCC900AB7213 /* ic_launcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher.png; sourceTree = "<group>"; };
+		AF65B77C1703CCC900AB7213 /* phone_focused_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_focused_transparent.png; sourceTree = "<group>"; };
+		AF65B77D1703CCC900AB7213 /* phone_selected_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_selected_transparent.png; sourceTree = "<group>"; };
+		AF65B77E1703CCC900AB7213 /* phone_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_transparent.png; sourceTree = "<group>"; };
+		AF65B77F1703CCC900AB7213 /* texting_focused_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texting_focused_transparent.png; sourceTree = "<group>"; };
+		AF65B7801703CCC900AB7213 /* texting_selected_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texting_selected_transparent.png; sourceTree = "<group>"; };
+		AF65B7811703CCC900AB7213 /* texting_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texting_transparent.png; sourceTree = "<group>"; };
 		AFE987A116F00A2C00F86CEC /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		AFE987A216F00A2C00F86CEC /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,15 +115,7 @@
 		AF63169316E6C16D0004116F /* iOSContactViewer */ = {
 			isa = PBXGroup;
 			children = (
-				AF2EBA07170375DC004718F5 /* email_focused_transparent.png */,
-				AF2EBA08170375DC004718F5 /* email_selected_transparent.png */,
-				AF2EBA09170375DC004718F5 /* email_transparent.png */,
-				AF2EB9FB170299C6004718F5 /* phone_focused_transparent.png */,
-				AF2EB9FC170299C6004718F5 /* phone_selected_transparent.png */,
-				AF2EB9FD170299C6004718F5 /* phone_transparent.png */,
-				AF2EB9FE170299C6004718F5 /* texting_focused_transparent.png */,
-				AF2EB9FF170299C6004718F5 /* texting_selected_transparent.png */,
-				AF2EBA00170299C6004718F5 /* texting_transparent.png */,
+				AF65B7771703CCC900AB7213 /* images */,
 				AF63169C16E6C16D0004116F /* AppDelegate.h */,
 				AF63169D16E6C16D0004116F /* AppDelegate.m */,
 				AF6316A516E6C16D0004116F /* MasterViewController.h */,
@@ -152,6 +146,23 @@
 				AF6316A316E6C16D0004116F /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF65B7771703CCC900AB7213 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				AF65B7781703CCC900AB7213 /* email_focused_transparent.png */,
+				AF65B7791703CCC900AB7213 /* email_selected_transparent.png */,
+				AF65B77A1703CCC900AB7213 /* email_transparent.png */,
+				AF65B77B1703CCC900AB7213 /* ic_launcher.png */,
+				AF65B77C1703CCC900AB7213 /* phone_focused_transparent.png */,
+				AF65B77D1703CCC900AB7213 /* phone_selected_transparent.png */,
+				AF65B77E1703CCC900AB7213 /* phone_transparent.png */,
+				AF65B77F1703CCC900AB7213 /* texting_focused_transparent.png */,
+				AF65B7801703CCC900AB7213 /* texting_selected_transparent.png */,
+				AF65B7811703CCC900AB7213 /* texting_transparent.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,15 +221,16 @@
 				AF6316A216E6C16D0004116F /* Default@2x.png in Resources */,
 				AF6316A416E6C16D0004116F /* Default-568h@2x.png in Resources */,
 				AF6316AD16E6C16D0004116F /* MasterViewController.xib in Resources */,
-				AF2EBA01170299C6004718F5 /* phone_focused_transparent.png in Resources */,
-				AF2EBA02170299C6004718F5 /* phone_selected_transparent.png in Resources */,
-				AF2EBA03170299C6004718F5 /* phone_transparent.png in Resources */,
-				AF2EBA04170299C6004718F5 /* texting_focused_transparent.png in Resources */,
-				AF2EBA05170299C6004718F5 /* texting_selected_transparent.png in Resources */,
-				AF2EBA06170299C6004718F5 /* texting_transparent.png in Resources */,
-				AF2EBA0A170375DC004718F5 /* email_focused_transparent.png in Resources */,
-				AF2EBA0B170375DC004718F5 /* email_selected_transparent.png in Resources */,
-				AF2EBA0C170375DC004718F5 /* email_transparent.png in Resources */,
+				AF65B7821703CCC900AB7213 /* email_focused_transparent.png in Resources */,
+				AF65B7831703CCC900AB7213 /* email_selected_transparent.png in Resources */,
+				AF65B7841703CCC900AB7213 /* email_transparent.png in Resources */,
+				AF65B7851703CCC900AB7213 /* ic_launcher.png in Resources */,
+				AF65B7861703CCC900AB7213 /* phone_focused_transparent.png in Resources */,
+				AF65B7871703CCC900AB7213 /* phone_selected_transparent.png in Resources */,
+				AF65B7881703CCC900AB7213 /* phone_transparent.png in Resources */,
+				AF65B7891703CCC900AB7213 /* texting_focused_transparent.png in Resources */,
+				AF65B78A1703CCC900AB7213 /* texting_selected_transparent.png in Resources */,
+				AF65B78B1703CCC900AB7213 /* texting_transparent.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
