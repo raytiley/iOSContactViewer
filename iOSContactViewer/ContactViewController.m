@@ -275,7 +275,7 @@ NSInteger tableViewHeight = 0;
     NSInteger index = 0;
     
     if (tag == 1000) {
-        [contact setTitle:textField.text];
+        [contact setName:textField.text];
     } else if (tag == 1001) {
         [contact setTitle:textField.text];
     } else if (tag >= 2000 && tag < 3000) {
