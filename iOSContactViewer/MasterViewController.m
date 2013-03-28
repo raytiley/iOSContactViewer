@@ -45,7 +45,13 @@
 
 - (void)insertNewObject:(id)sender
 {
-    
+    if (!self.contactViewController) {
+        self.contactViewController = [[ContactViewController   alloc] init];
+    }
+    Contact* contact = [[ContactRepository getContactRepository] createNewContact];
+    self.contactViewController.contact = contact;
+    self.contactViewController.editing = YES;
+    [self.navigationController pushViewController:self.contactViewController animated:YES];
 }
 
 #pragma mark - Table View
