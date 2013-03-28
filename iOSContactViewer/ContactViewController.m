@@ -9,6 +9,7 @@
 #import "ContactViewController.h"
 #import "MSSETableViewCell.h"
 #import "ContactRepository.h"
+#import "MSSEGravatarManager.h"
 
 @interface ContactViewController ()
 
@@ -16,51 +17,23 @@
 
 @implementation ContactViewController
 @synthesize contact;
-NSInteger tableViewHeight = 0;
 
 - (id)init
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShown:) name:UIKeyboardDidShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHidden:) name:UIKeyboardDidHideNotification object:nil];
+        [[self tableView] setAutoresizingMask:(UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth)];
     }
     return self;
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
-    
     ContactRepository* repo = [ContactRepository getContactRepository];
     if([[repo allContacts] containsObject:contact] == NO)
     {
         [repo addNewContact:contact];
     }
-}
-
--(void) keyboardShown:(NSNotification*) notification
-{
-    tableViewHeight = self.tableView.frame.size.height;
-    
-    CGRect tvFrame = self.tableView.frame;
-    tvFrame.size.height = self.tableView.frame.size.height - 200;
-    self.tableView.frame = tvFrame;
-}
-
--(void) keyboardHidden:(NSNotification*) notification
-{
-    //Fix a bug when entering the first time if keybaord was present in previous view (search bar)
-    if(tableViewHeight == 0)
-        return;
-        
-    CGRect tvFrame = self.tableView.frame;
-    tvFrame.size.height = tableViewHeight;
-    [UIView beginAnimations:@"TableViewDown" context:NULL];
-    [UIView setAnimationDuration:0.5f];
-    self.tableView.frame = tvFrame;
-    [UIView commitAnimations];
 }
 
 -(void) scrollToCell:(NSIndexPath*) path {
@@ -105,6 +78,7 @@ NSInteger tableViewHeight = 0;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
@@ -371,6 +345,9 @@ NSInteger tableViewHeight = 0;
     } else {
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.hidesBackButton = NO;
+        
+        //Coming out of an edit download gravatar
+        [MSSEGravatarManager downloadGravatarForEmail:[contact defaultEmail]];
     }
     
     //Refresh the table view

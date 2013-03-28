@@ -11,6 +11,7 @@
 #import "ContactRepository.h"
 #import "Contact.h"
 #import "ContactViewController.h"
+#import "MSSEGravatarManager.h"
 
 @interface MasterViewController () {
     
@@ -121,6 +122,7 @@ NSArray* filteredContacts;
 
     Contact *contact = [filteredContacts objectAtIndex:indexPath.row];
     cell.textLabel.text = [contact name];
+    [[cell imageView] setImage:[MSSEGravatarManager getGravatarImageForEmail:[contact defaultEmail]]];
     return cell;
 }
 
