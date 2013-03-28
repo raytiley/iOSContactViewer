@@ -41,6 +41,11 @@
     return newContact;
 }
 
+- (void)addNewContact:(Contact *)contact
+{
+    [contacts addObject:contact];
+}
+
 -(void)deleteContact:(Contact *)contact
 {
     if([contacts containsObject:contact])

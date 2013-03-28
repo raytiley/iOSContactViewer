@@ -56,4 +56,11 @@
     return self;
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    else
+        return NO;
+}
 @end

@@ -8,6 +8,7 @@
 
 #import "ContactViewController.h"
 #import "MSSETableViewCell.h"
+#import "ContactRepository.h"
 
 @interface ContactViewController ()
 
@@ -31,6 +32,12 @@ NSInteger tableViewHeight = 0;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
+    
+    ContactRepository* repo = [ContactRepository getContactRepository];
+    if([[repo allContacts] containsObject:contact] == NO)
+    {
+        [repo addNewContact:contact];
+    }
 }
 
 -(void) keyboardShown:(NSNotification*) notification
@@ -283,7 +290,7 @@ NSInteger tableViewHeight = 0;
         [[contact phones] setObject:textField.text atIndexedSubscript:index];
     } else if (tag >= 3000) {
         index = tag - 3000;
-        [[contact phones] setObject:textField.text atIndexedSubscript:index];
+        [[contact emails] setObject:textField.text atIndexedSubscript:index];
     }
     
     
