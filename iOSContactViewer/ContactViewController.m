@@ -51,6 +51,10 @@ NSInteger tableViewHeight = 0;
 
 -(void) keyboardHidden:(NSNotification*) notification
 {
+    //Fix a bug when entering the first time if keybaord was present in previous view (search bar)
+    if(tableViewHeight == 0)
+        return;
+        
     CGRect tvFrame = self.tableView.frame;
     tvFrame.size.height = tableViewHeight;
     [UIView beginAnimations:@"TableViewDown" context:NULL];

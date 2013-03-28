@@ -18,15 +18,43 @@
 @end
 
 @implementation MasterViewController
+
+UISearchBar* searchBar;
+NSArray* filteredContacts;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Contacts", @"Contacts");
+        searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        searchBar.delegate = self;
+        
+        self.tableView.tableHeaderView = searchBar;
     }
     return self;
 }
-							
+         
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+ {
+     [searchBar resignFirstResponder];
+ }
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,6 +63,8 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    filteredContacts = [[ContactRepository getContactRepository] allContacts];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,6 +73,12 @@
     [self.tableView reloadData];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [searchBar resignFirstResponder];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -69,8 +105,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    ContactRepository* repo = [ContactRepository getContactRepository];
-    return [[repo allContacts] count];
+    return [filteredContacts count];
 }
 
 // Customize the appearance of table view cells.
@@ -84,7 +119,7 @@
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
 
-    Contact *contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
+    Contact *contact = [filteredContacts objectAtIndex:indexPath.row];
     cell.textLabel.text = [contact name];
     return cell;
 }
@@ -99,12 +134,37 @@
 {
     ContactRepository* contacts = [ContactRepository getContactRepository];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Contact* contactToRemove = [[contacts allContacts] objectAtIndex:indexPath.row];
+        Contact* contactToRemove = [filteredContacts objectAtIndex:indexPath.row];
         [contacts deleteContact:contactToRemove];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    filteredContacts = [self filterContactsBy:searchText];
+    [self.tableView reloadData];
+}
+
+-(NSArray*)filterContactsBy:(NSString *)searchText
+{
+    NSArray* contacts = [[ContactRepository getContactRepository] allContacts];
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+    
+    if(!searchText || [searchText isEqualToString:@""])
+        return contacts;
+    
+    for(int i = 0; i < [contacts count]; i++)
+    {
+        NSRange r = [[[contacts objectAtIndex:i] name] rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        if(r.location != NSNotFound)
+        {
+            [results addObject:[contacts objectAtIndex:i]];
+        }
+    }
+    return results;
 }
 
 /*
@@ -141,7 +201,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     //Get the contact
-    Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:actionSheet.tag];
+    Contact* contact = [filteredContacts objectAtIndex:actionSheet.tag];
     
     UIDevice *device = [UIDevice currentDevice];
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
@@ -185,7 +245,7 @@
      if (!self.contactViewController) {
          self.contactViewController = [[ContactViewController   alloc] init];
      }
-     Contact* contact = [[[ContactRepository getContactRepository] allContacts] objectAtIndex:indexPath.row];
+     Contact* contact = [filteredContacts objectAtIndex:indexPath.row];
      self.contactViewController.contact = contact;
      [self.navigationController pushViewController:self.contactViewController animated:YES];
      

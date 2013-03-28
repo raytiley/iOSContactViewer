@@ -10,7 +10,7 @@
 
 @class ContactViewController;
 
-@interface MasterViewController : UITableViewController <UIActionSheetDelegate>
+@interface MasterViewController : UITableViewController <UIActionSheetDelegate, UISearchBarDelegate>
 
 @property (strong, nonatomic) ContactViewController *contactViewController;
 
