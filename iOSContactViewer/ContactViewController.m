@@ -15,14 +15,63 @@
 
 @implementation ContactViewController
 @synthesize contact;
+NSInteger tableViewHeight = 0;
 
 - (id)init
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if(self) {
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShown:) name:UIKeyboardDidShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHidden:) name:UIKeyboardDidHideNotification object:nil];
     }
     return self;
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
+}
+
+-(void) keyboardShown:(NSNotification*) notification
+{
+    tableViewHeight = self.tableView.frame.size.height;
+    
+    CGRect tvFrame = self.tableView.frame;
+    tvFrame.size.height = self.tableView.frame.size.height - 200;
+    self.tableView.frame = tvFrame;
+}
+
+-(void) keyboardHidden:(NSNotification*) notification
+{
+    CGRect tvFrame = self.tableView.frame;
+    tvFrame.size.height = tableViewHeight;
+    [UIView beginAnimations:@"TableViewDown" context:NULL];
+    [UIView setAnimationDuration:0.5f];
+    self.tableView.frame = tvFrame;
+    [UIView commitAnimations];
+}
+
+-(void) scrollToCell:(NSIndexPath*) path {
+    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+}
+
+-(void) textFieldDidBeginEditing:(UITextField *)textField {
+    NSInteger row = 0;
+    NSInteger section = 0;
+    NSInteger tag = textField.tag;
+    if(tag == 1000 || tag == 1001) {
+        section = 0;
+        row = tag - 1000;
+    } else if (tag >= 2000 && tag < 2000) {
+        section = 1;
+        row = tag - 2000;
+    } else if (tag >= 3000 && tag < 4000) {
+        section = 2;
+        row = tag - 3000;
+    }
+    NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:section];
+    [self performSelector:@selector(scrollToCell:) withObject:path afterDelay:0.5f];
 }
 
 - (void)viewDidLoad
@@ -34,6 +83,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if (self.isEditing) {
+        [self setEditing:NO animated:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -157,13 +213,13 @@
                 break;
             case 1:
                 if(indexPath.row == [[contact phones] count])
-                    reuseIdentifier = @"NewItemCell";
+                    reuseIdentifier = @"NewPhoneCell";
                 else
                     reuseIdentifier = @"PhoneEditCell";
                 break;
             case 2:
                 if(indexPath.row == [[contact emails] count])
-                    reuseIdentifier = @"NewItemCell";
+                    reuseIdentifier = @"NewEmailCell";
                 else
                     reuseIdentifier = @"EmailEditCell";
                 break;
@@ -174,28 +230,37 @@
         cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         
         if(!cell) {
-            if([reuseIdentifier isEqualToString:@"NewItemCell"]) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-                cell.textLabel.text = @"New";
-                
-            } else if([reuseIdentifier isEqualToString:@"PhoneEditCell"]) {
-                cell = [self createNewPhoneViewCell];
-            } else if([reuseIdentifier isEqualToString:@"EmailEditCell"]) {
-                cell = [self createNewEmailCell];
-            }
-            else
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+            cell = [[MSSETableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
         }
         
         //Configur Cell
-        if([reuseIdentifier isEqualToString:@"NewItemCell"]) {
+        if([reuseIdentifier isEqualToString:@"ContactDetailsEditCell"]) {
+            UITextField *textField =(UITextField *) [[[cell contentView] subviews] objectAtIndex:0];
+            [textField setDelegate:self];
+            [textField setReturnKeyType:UIReturnKeyDone];
+            if(indexPath.row == 0) {
+                [textField setTag:1000];
+                [textField setText:[contact name]];
+            } else {
+                [textField setTag:1001];
+                [textField setText:[contact title]];
+            }
             
-            
+        } else if([reuseIdentifier isEqualToString:@"NewPhoneCell"]) {
+            [[cell textLabel] setText:@"New Phone"];
+        } else if([reuseIdentifier isEqualToString:@"NewEmailCell"]) {
+            [[cell textLabel] setText:@"New Email"];
         } else if([reuseIdentifier isEqualToString:@"PhoneEditCell"]) {
-            UITextField *textField =(UITextField *) [[cell contentView] viewWithTag:100];
+            UITextField *textField =(UITextField *) [[[cell contentView] subviews] objectAtIndex:0];
+            [textField setDelegate:self];
+            [textField setReturnKeyType:UIReturnKeyDone];
+            [textField setTag:2000 + indexPath.row];
             [textField setText:[[contact phones] objectAtIndex:indexPath.row]];
         } else if([reuseIdentifier isEqualToString:@"EmailEditCell"]) {
-            UITextField *textField = (UITextField *) [[cell contentView] viewWithTag:100];
+            UITextField *textField = (UITextField *) [[[cell contentView] subviews] objectAtIndex:0];
+            [textField setDelegate:self];
+            [textField setReturnKeyType:UIReturnKeyDone];
+            [textField setTag:3000 + indexPath.row];
             [textField setText:[[contact emails] objectAtIndex:indexPath.row]];
         }
         else
@@ -205,6 +270,30 @@
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSInteger tag = textField.tag;
+    NSInteger index = 0;
+    
+    if (tag == 1000) {
+        [contact setTitle:textField.text];
+    } else if (tag == 1001) {
+        [contact setTitle:textField.text];
+    } else if (tag >= 2000 && tag < 3000) {
+        index = tag - 2000;
+        [[contact phones] setObject:textField.text atIndexedSubscript:index];
+    } else if (tag >= 3000) {
+        index = tag - 3000;
+        [[contact phones] setObject:textField.text atIndexedSubscript:index];
+    }
+    
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:indexPath];
@@ -212,30 +301,6 @@
         UIButton* callButton = (UIButton *) [[cell contentView] viewWithTag:101];
         [callButton setHidden:YES];
     }
-}
-
-
--(UITableViewCell *)createNewPhoneViewCell
-{
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0,0,150,40)];
-    textField.tag = 100;
-    [textField setBorderStyle:UITextBorderStyleRoundedRect];
-    UITableViewCell* cell = [[MSSETableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PhoneEditCell"];
-    
-    
-    UIButton *txtButton = [[UIButton alloc] initWithFrame:CGRectMake(150, 0, 44, 44)];
-    txtButton.tag = 101;
-    [txtButton setImage:[UIImage imageNamed:@"phone_transparent.png"] forState:UIControlStateNormal];
-    
-    UIButton *callButton = [[UIButton alloc] initWithFrame:CGRectMake(190, 0, 44, 44)];
-    callButton.tag = 102;
-    [callButton setImage:[UIImage imageNamed:@"texting_transparent.png"] forState:UIControlStateNormal];
-    
-    [[cell contentView] addSubview:textField];
-    [[cell contentView] addSubview:txtButton];
-    [[cell contentView] addSubview:callButton];
-    
-    return cell;
 }
 
 -(UITableViewCell *)createNewEmailCell
@@ -259,7 +324,22 @@
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
     [super setEditing:editing animated:animated];
+    
+    if(self.isEditing){
+        //Change back button to cancel
+        self.navigationItem.hidesBackButton = YES;
+        
+    } else {
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = NO;
+    }
+    
+    //Refresh the table view
     [self.tableView reloadData];
+}
+
+-(void)cancelPressed {
+    [self setEditing:NO animated:YES];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {

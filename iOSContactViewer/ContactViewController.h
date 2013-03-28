@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Contact.h"
 
-@interface ContactViewController : UITableViewController <UIActionSheetDelegate>
+@interface ContactViewController : UITableViewController <UIActionSheetDelegate, UITextFieldDelegate>
 @property Contact* contact;
 @end
