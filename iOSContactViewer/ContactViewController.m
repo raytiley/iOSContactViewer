@@ -346,6 +346,24 @@
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.hidesBackButton = NO;
         
+        //Clean up contact
+        NSMutableArray *phoneKeepers = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [[contact phones] count]; i++) {
+            if (![[[contact phones] objectAtIndex: i] isEqualToString:@""]) {
+                [phoneKeepers addObject:[[contact phones] objectAtIndex:i]];
+            }
+        }
+        
+        NSMutableArray *emailKeepers = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [[contact emails] count]; i++) {
+            if (![[[contact phones] objectAtIndex: i] isEqualToString:@""]) {
+                [emailKeepers addObject:[[contact phones] objectAtIndex:i]];
+            }
+        }
+        
+        [contact setPhones:phoneKeepers];
+        [contact setEmails:emailKeepers];
+        
         //Coming out of an edit download gravatar
         [MSSEGravatarManager downloadGravatarForEmail:[contact defaultEmail]];
     }
