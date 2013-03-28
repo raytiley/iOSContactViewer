@@ -47,7 +47,7 @@
 {
     NSString* processedEmail = [[email lowercaseString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString* hash = [self generateMd5HashForEmail:processedEmail];
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@", hash]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@?d=monsterid", hash]];
 }
 
 + (NSString *) generateMd5HashForEmail:(NSString *) email {
