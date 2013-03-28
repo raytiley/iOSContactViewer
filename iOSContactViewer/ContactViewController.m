@@ -240,7 +240,7 @@ NSInteger tableViewHeight = 0;
             cell = [[MSSETableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
         }
         
-        //Configur Cell
+        //Configure Cell
         if([reuseIdentifier isEqualToString:@"ContactDetailsEditCell"]) {
             UITextField *textField =(UITextField *) [[[cell contentView] subviews] objectAtIndex:0];
             [textField setDelegate:self];
@@ -292,41 +292,11 @@ NSInteger tableViewHeight = 0;
         index = tag - 3000;
         [[contact emails] setObject:textField.text atIndexedSubscript:index];
     }
-    
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell* cell = [[self tableView] cellForRowAtIndexPath:indexPath];
-    if(indexPath.section == 1) {
-        UIButton* callButton = (UIButton *) [[cell contentView] viewWithTag:101];
-        [callButton setHidden:YES];
-    }
-}
-
--(UITableViewCell *)createNewEmailCell
-{
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0,0,180,40)];
-    textField.tag = 100;
-    
-    [textField setBorderStyle:UITextBorderStyleRoundedRect];
-    UITableViewCell* cell = [[MSSETableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"EmailEditCell"];
-    
-    
-    UIButton *emailButton = [[UIButton alloc] initWithFrame:CGRectMake(190, 0, 44, 44)];
-    emailButton.tag = 101;
-    [emailButton setImage:[UIImage imageNamed:@"email_transparent.png"] forState:UIControlStateNormal];
-    
-    [[cell contentView] addSubview:textField];
-    [[cell contentView] addSubview:emailButton];
-    
-    return cell;
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated {
@@ -343,10 +313,6 @@ NSInteger tableViewHeight = 0;
     
     //Refresh the table view
     [self.tableView reloadData];
-}
-
--(void)cancelPressed {
-    [self setEditing:NO animated:YES];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
