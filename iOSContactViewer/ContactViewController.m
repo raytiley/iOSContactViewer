@@ -248,9 +248,11 @@ NSInteger tableViewHeight = 0;
             if(indexPath.row == 0) {
                 [textField setTag:1000];
                 [textField setText:[contact name]];
+                [textField setPlaceholder:@"Name"];
             } else {
                 [textField setTag:1001];
                 [textField setText:[contact title]];
+                [textField setPlaceholder:@"Title"];
             }
             
         } else if([reuseIdentifier isEqualToString:@"NewPhoneCell"]) {
@@ -258,23 +260,79 @@ NSInteger tableViewHeight = 0;
         } else if([reuseIdentifier isEqualToString:@"NewEmailCell"]) {
             [[cell textLabel] setText:@"New Email"];
         } else if([reuseIdentifier isEqualToString:@"PhoneEditCell"]) {
+            
+            NSString* phone = (NSString *)[[contact phones] objectAtIndex:indexPath.row];
+            
             UITextField *textField =(UITextField *) [[[cell contentView] subviews] objectAtIndex:0];
+            UIButton *callButton = (UIButton *) [[[cell contentView] subviews] objectAtIndex:1];
+            UIButton *txtButton = (UIButton *) [[[cell contentView] subviews] objectAtIndex:2];
+            
             [textField setDelegate:self];
             [textField setReturnKeyType:UIReturnKeyDone];
             [textField setTag:2000 + indexPath.row];
-            [textField setText:[[contact phones] objectAtIndex:indexPath.row]];
+            [textField setText:phone];
+            
+            [callButton addTarget:self action:@selector(setDefaultCallPhonePressed:) forControlEvents:UIControlEventTouchUpInside];
+            [callButton setTag: indexPath.row];
+            
+            if([phone isEqualToString:[contact defaultCallPhone]]) {
+                [callButton setImage:[UIImage imageNamed:@"phone_selected_transparent.png" ] forState:UIControlStateNormal];
+            } else {
+                [callButton setImage:[UIImage imageNamed:@"phone_transparent.png"] forState:UIControlStateNormal];
+            }
+            
+            [txtButton addTarget:self action:@selector(setDefaultTextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [txtButton setTag:indexPath.row];
+            
+            if([phone isEqualToString:[contact defaultTextPhone]]) {
+                [txtButton setImage:[UIImage imageNamed:@"texting_selected_transparent.png" ] forState:UIControlStateNormal];
+            } else {
+                [txtButton setImage:[UIImage imageNamed:@"texting_transparent.png"] forState:UIControlStateNormal];
+            }
+            
         } else if([reuseIdentifier isEqualToString:@"EmailEditCell"]) {
+            NSString* email = [[contact emails] objectAtIndex:indexPath.row];
+            
             UITextField *textField = (UITextField *) [[[cell contentView] subviews] objectAtIndex:0];
+            UIButton *emailButton = (UIButton *) [[[cell contentView] subviews] objectAtIndex:1];
+            
             [textField setDelegate:self];
             [textField setReturnKeyType:UIReturnKeyDone];
             [textField setTag:3000 + indexPath.row];
-            [textField setText:[[contact emails] objectAtIndex:indexPath.row]];
+            [textField setText:email];
+            
+            [emailButton addTarget:self action:@selector(setDefaultEmailButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [emailButton setTag:indexPath.row];
+            
+            if([email isEqualToString:[contact defaultEmail]]) {
+                [emailButton setImage:[UIImage imageNamed:@"email_selected_transparent.png" ] forState:UIControlStateNormal];
+            } else {
+                [emailButton setImage:[UIImage imageNamed:@"email_transparent.png"] forState:UIControlStateNormal];
+            }
         }
         else
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
 
         return cell;
     }
+}
+
+-(void) setDefaultCallPhonePressed:(id)sender {
+    UIButton *callBtn = (UIButton *)sender;
+    [contact setDefaultCallPhone:[[contact phones] objectAtIndex:callBtn.tag]];
+    [self.tableView reloadData];
+}
+
+-(void) setDefaultTextButtonPressed:(id)sender {
+    UIButton *txtBtn = (UIButton *)sender;
+    [contact setDefaultTextPhone:[[contact phones] objectAtIndex:txtBtn.tag]];
+    [self.tableView reloadData];
+}
+
+-(void) setDefaultEmailButtonPressed:(id)sender {
+    UIButton *emailBtn = (UIButton *)sender;
+    [contact setDefaultEmail:[[contact emails] objectAtIndex:emailBtn.tag]];
+    [self.tableView reloadData];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

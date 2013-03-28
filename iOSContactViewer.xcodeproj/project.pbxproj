@@ -31,6 +31,7 @@
 		AF65B7891703CCC900AB7213 /* texting_focused_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B77F1703CCC900AB7213 /* texting_focused_transparent.png */; };
 		AF65B78A1703CCC900AB7213 /* texting_selected_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B7801703CCC900AB7213 /* texting_selected_transparent.png */; };
 		AF65B78B1703CCC900AB7213 /* texting_transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = AF65B7811703CCC900AB7213 /* texting_transparent.png */; };
+		AF65B78D17046E4400AB7213 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF65B78C17046E4400AB7213 /* TestView.xib */; };
 		AFE987A316F00A2C00F86CEC /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE987A216F00A2C00F86CEC /* ContactViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		AF65B77F1703CCC900AB7213 /* texting_focused_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texting_focused_transparent.png; sourceTree = "<group>"; };
 		AF65B7801703CCC900AB7213 /* texting_selected_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texting_selected_transparent.png; sourceTree = "<group>"; };
 		AF65B7811703CCC900AB7213 /* texting_transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texting_transparent.png; sourceTree = "<group>"; };
+		AF65B78C17046E4400AB7213 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		AFE987A116F00A2C00F86CEC /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		AFE987A216F00A2C00F86CEC /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 				AFE987A216F00A2C00F86CEC /* ContactViewController.m */,
 				AF2EBA0D1703821A004718F5 /* MSSETableViewCell.h */,
 				AF2EBA0E1703821A004718F5 /* MSSETableViewCell.m */,
+				AF65B78C17046E4400AB7213 /* TestView.xib */,
 			);
 			path = iOSContactViewer;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				AF65B7891703CCC900AB7213 /* texting_focused_transparent.png in Resources */,
 				AF65B78A1703CCC900AB7213 /* texting_selected_transparent.png in Resources */,
 				AF65B78B1703CCC900AB7213 /* texting_transparent.png in Resources */,
+				AF65B78D17046E4400AB7213 /* TestView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
