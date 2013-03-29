@@ -36,10 +36,6 @@
     }
 }
 
--(void) scrollToCell:(NSIndexPath*) path {
-    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
-}
-
 -(void) textFieldDidBeginEditing:(UITextField *)textField {
     NSInteger row = 0;
     NSInteger section = 0;
@@ -54,8 +50,6 @@
         section = 2;
         row = tag - 3000;
     }
-    NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:section];
-    [self performSelector:@selector(scrollToCell:) withObject:path afterDelay:0.5f];
 }
 
 - (void)viewDidLoad
