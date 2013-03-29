@@ -297,19 +297,32 @@
 
 -(void) setDefaultCallPhonePressed:(id)sender {
     UIButton *callBtn = (UIButton *)sender;
-    [contact setDefaultCallPhone:[[contact phones] objectAtIndex:callBtn.tag]];
+    NSString *phone = [[contact phones] objectAtIndex:callBtn.tag];
+    if(![phone isEqualToString:@""])
+    {
+        [contact setDefaultCallPhone:phone];
+        
+    }
     [self.tableView reloadData];
 }
 
 -(void) setDefaultTextButtonPressed:(id)sender {
     UIButton *txtBtn = (UIButton *)sender;
-    [contact setDefaultTextPhone:[[contact phones] objectAtIndex:txtBtn.tag]];
+    NSString *phone = [[contact phones] objectAtIndex:txtBtn.tag];
+    if(![phone isEqualToString:@""])
+    {
+        [contact setDefaultTextPhone:phone];
+    }
     [self.tableView reloadData];
 }
 
 -(void) setDefaultEmailButtonPressed:(id)sender {
     UIButton *emailBtn = (UIButton *)sender;
-    [contact setDefaultEmail:[[contact emails] objectAtIndex:emailBtn.tag]];
+    NSString *email = [[contact emails] objectAtIndex:emailBtn.tag];
+    if(![email isEqualToString:@""])
+    {
+        [contact setDefaultEmail:email];
+    }
     [self.tableView reloadData];
 }
 
