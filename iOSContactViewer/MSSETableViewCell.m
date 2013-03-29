@@ -25,6 +25,7 @@
             //TODO Figure out how to use layout stuff better.
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(7,7,180,30)];
             [textField setKeyboardType:UIKeyboardTypePhonePad];
+            [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
             [textField setBorderStyle:UITextBorderStyleNone];
             [textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
             [textField setPlaceholder:@"Phone"];
@@ -46,6 +47,7 @@
             
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(7,7,180,30)];
             [textField setKeyboardType:UIKeyboardTypeEmailAddress];
+            [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
             [textField setBorderStyle:UITextBorderStyleNone];
             [textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
             [textField setPlaceholder:@"Email"];
