@@ -24,6 +24,7 @@
         } else if([reuseIdentifier isEqualToString:@"PhoneEditCell"]) {
             //TODO Figure out how to use layout stuff better.
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(7,7,180,30)];
+            [textField setKeyboardType:UIKeyboardTypePhonePad];
             [textField setBorderStyle:UITextBorderStyleNone];
             [textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
             [textField setPlaceholder:@"Phone"];
@@ -44,6 +45,7 @@
         } else if([reuseIdentifier isEqualToString:@"EmailEditCell"]) {
             
             UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(7,7,180,30)];
+            [textField setKeyboardType:UIKeyboardTypeEmailAddress];
             [textField setBorderStyle:UITextBorderStyleNone];
             [textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
             [textField setPlaceholder:@"Email"];
