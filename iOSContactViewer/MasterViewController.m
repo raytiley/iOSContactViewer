@@ -136,11 +136,16 @@ NSArray* filteredContacts;
 {
     ContactRepository* contacts = [ContactRepository getContactRepository];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
         Contact* contactToRemove = [filteredContacts objectAtIndex:indexPath.row];
+        
+        //We need to remove the contact from the repo first, so that then we can update the filter
         [contacts deleteContact:contactToRemove];
+        filteredContacts = [self filterContactsBy:searchBar.text];
+        
+        //remove the row
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        
     }
 }
 
